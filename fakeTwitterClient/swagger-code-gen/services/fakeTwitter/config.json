@@ -1,0 +1,7 @@
+{
+    "fileNaming": "kebab-case",
+    "apiModulePrefix": "FakeTwitter",
+    "modelFileSuffix": "-fakeTwitter",
+    "serviceSuffix": "Service",
+    "serviceFileSuffix": ".service"
+}

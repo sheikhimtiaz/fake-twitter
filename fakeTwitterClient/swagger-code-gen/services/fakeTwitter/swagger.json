@@ -1,0 +1,943 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "My Collection for New Notes",
+      "description": "",
+      "contact": {},
+      "version": "1.0"
+    },
+    "servers": [
+      {
+        "url": "https://missingdata.pythonanywhere.com",
+        "variables": {}
+      }
+    ],
+    "paths": {
+      "/": {
+        "get": {
+          "tags": [
+            "Tweet Live"
+          ],
+          "summary": "Get Ping",
+          "description": "",
+          "operationId": "GetPing",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        },
+        "post": {
+          "tags": [
+            "Tweet Live"
+          ],
+          "summary": "Make a Ping",
+          "description": "",
+          "operationId": "MakeaPing",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/MakeaPingRequest"
+                    },
+                    {
+                      "example": {
+                        "hello": "John Doe"
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "hello": "John Doe"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      },
+      "/signup": {
+        "post": {
+          "tags": [
+            "Tweet Live"
+          ],
+          "summary": "Signup",
+          "description": "",
+          "operationId": "Signup",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SignupRequest"
+                    },
+                    {
+                      "example": {
+                        "username": "jaanedoe",
+                        "email": "jaanedoe@doe.com",
+                        "password": "notsosecurepassword"
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "username": "jaanedoe",
+                  "email": "jaanedoe@doe.com",
+                  "password": "notsosecurepassword"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      },
+      "/login": {
+        "post": {
+          "tags": [
+            "Tweet Live"
+          ],
+          "summary": "Login",
+          "description": "",
+          "operationId": "Login",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/LoginRequest"
+                    },
+                    {
+                      "example": {
+                        "email": "janedoe@doe.com",
+                        "password": "notsosecurepassword"
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "email": "janedoe@doe.com",
+                  "password": "notsosecurepassword"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      },
+      "/tweet": {
+        "post": {
+          "tags": [
+            "Tweet Live"
+          ],
+          "summary": "Make a Tweet Live",
+          "description": "",
+          "operationId": "MakeaTweetLive",
+          "parameters": [
+            {
+              "name": "X-Jwt-Token",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJleHAiOjE2ODEzNjc1NzV9.TnJSnEzptYPxkGJd3Qg3zaFhOScyZSElCmEVhYJ3hH8"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/MakeaTweetLiveRequest"
+                    },
+                    {
+                      "example": {
+                        "content": "Nice Try Buddy  gggfgfffff"
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "content": "Nice Try Buddy  gggfgfffff"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      },
+      "/users": {
+        "get": {
+          "tags": [
+            "Tweet Live"
+          ],
+          "summary": "Get Users",
+          "description": "",
+          "operationId": "GetUsers",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "application/json"
+              }
+            },
+            {
+              "name": "X-Jwt-Token",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJleHAiOjE2ODEzNjc1NzV9.TnJSnEzptYPxkGJd3Qg3zaFhOScyZSElCmEVhYJ3hH8"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      },
+      "/users/3/tweets": {
+        "get": {
+          "tags": [
+            "Tweet Live"
+          ],
+          "summary": "Get Tweets by User ID",
+          "description": "",
+          "operationId": "GetTweetsbyUserID",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "application/json"
+              }
+            },
+            {
+              "name": "X-Jwt-Token",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJleHAiOjE2OTA1NjI5MTl9.cXQTf4U2HwZnl2cNw-LG0ooBw9Xmvj4n3q8Wz4vblzY"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      },
+      "/users/132/following": {
+        "get": {
+          "tags": [
+            "Tweet Live"
+          ],
+          "summary": "Get Followings by User ID",
+          "description": "",
+          "operationId": "GetFollowingsbyUserID",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "application/json"
+              }
+            },
+            {
+              "name": "X-Jwt-Token",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJleHAiOjE2OTA1NjI5MTl9.cXQTf4U2HwZnl2cNw-LG0ooBw9Xmvj4n3q8Wz4vblzY"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      },
+      "/users/132/followers": {
+        "get": {
+          "tags": [
+            "Tweet Live"
+          ],
+          "summary": "Get Followers by User ID",
+          "description": "",
+          "operationId": "GetFollowersbyUserID",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "application/json"
+              }
+            },
+            {
+              "name": "X-Jwt-Token",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJleHAiOjE2OTA1NjI5MTl9.cXQTf4U2HwZnl2cNw-LG0ooBw9Xmvj4n3q8Wz4vblzY"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      },
+      "/follow": {
+        "post": {
+          "tags": [
+            "Tweet Live"
+          ],
+          "summary": "Follow User",
+          "description": "",
+          "operationId": "FollowUser",
+          "parameters": [
+            {
+              "name": "X-Jwt-Token",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJleHAiOjE2ODAzOTg5ODh9._qFn79Z1MSxTEHCqKDamnhhmTR_bIgvk6DiJ_v5w604"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/FollowUserRequest"
+                    },
+                    {
+                      "example": {
+                        "user_id": 1
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "user_id": 1
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      },
+      "/unfollow": {
+        "post": {
+          "tags": [
+            "Tweet Live"
+          ],
+          "summary": "Unfollow User",
+          "description": "",
+          "operationId": "UnfollowUser",
+          "parameters": [
+            {
+              "name": "X-Jwt-Token",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJleHAiOjE2ODAzOTg5ODh9._qFn79Z1MSxTEHCqKDamnhhmTR_bIgvk6DiJ_v5w604"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/UnfollowUserRequest"
+                    },
+                    {
+                      "example": {
+                        "user_id": 1
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "user_id": 1
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      },
+      "/following": {
+        "get": {
+          "tags": [
+            "Tweet Live"
+          ],
+          "summary": "Followings",
+          "description": "",
+          "operationId": "Followings",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "application/json"
+              }
+            },
+            {
+              "name": "X-Jwt-Token",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJleHAiOjE2ODAzOTg5ODh9._qFn79Z1MSxTEHCqKDamnhhmTR_bIgvk6DiJ_v5w604"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      },
+      "/followers": {
+        "get": {
+          "tags": [
+            "Tweet Live"
+          ],
+          "summary": "Followers",
+          "description": "",
+          "operationId": "Followers",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "application/json"
+              }
+            },
+            {
+              "name": "X-Jwt-Token",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJleHAiOjE2ODAzOTg5ODh9._qFn79Z1MSxTEHCqKDamnhhmTR_bIgvk6DiJ_v5w604"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      },
+      "/my-tweets": {
+        "get": {
+          "tags": [
+            "Tweet Live"
+          ],
+          "summary": "My Tweets",
+          "description": "",
+          "operationId": "MyTweets",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "application/json"
+              }
+            },
+            {
+              "name": "X-Jwt-Token",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJleHAiOjE2ODA2Mjg3NDZ9.ch1ApjrlRLKtk2mXgUEkG-d4xZE6UzswIAa2NtHRfqo"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      },
+      "/timeline": {
+        "get": {
+          "tags": [
+            "Tweet Live"
+          ],
+          "summary": "My Timeline",
+          "description": "",
+          "operationId": "MyTimeline",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "application/json"
+              }
+            },
+            {
+              "name": "X-Jwt-Token",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJleHAiOjE2ODEyNDg5MDB9.m6hEoUYycOhsvc4kumx38yzA5Nb_W4O_WJeDz-YAaXM"
+              }
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "description": "",
+              "required": true,
+              "style": "form",
+              "explode": true,
+              "schema": {
+                "type": "string",
+                "example": "2"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      },
+      "/search": {
+        "post": {
+          "tags": [
+            "Tweet Live"
+          ],
+          "summary": "Search by Username",
+          "description": "",
+          "operationId": "SearchbyUsername",
+          "parameters": [
+            {
+              "name": "X-Jwt-Token",
+              "in": "header",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string",
+                "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJleHAiOjE2ODE1Nzk4NDR9.oKmtztiG3I8yNr7t7btXnoNNm4fb0YWBrG6isstU6Gc"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SearchbyUsernameRequest"
+                    },
+                    {
+                      "example": {
+                        "token": "just"
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "token": "just"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {},
+              "content": {
+                "text/plain": {
+                  "schema": {}
+                }
+              }
+            }
+          },
+          "deprecated": false,
+          "security": []
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "MakeaPingRequest": {
+          "title": "MakeaPingRequest",
+          "required": [
+            "hello"
+          ],
+          "type": "object",
+          "properties": {
+            "hello": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "hello": "John Doe"
+          }
+        },
+        "SignupRequest": {
+          "title": "SignupRequest",
+          "required": [
+            "username",
+            "email",
+            "password"
+          ],
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "username": "jaanedoe",
+            "email": "jaanedoe@doe.com",
+            "password": "notsosecurepassword"
+          }
+        },
+        "LoginRequest": {
+          "title": "LoginRequest",
+          "required": [
+            "email",
+            "password"
+          ],
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "email": "janedoe@doe.com",
+            "password": "notsosecurepassword"
+          }
+        },
+        "MakeaTweetLiveRequest": {
+          "title": "MakeaTweetLiveRequest",
+          "required": [
+            "content"
+          ],
+          "type": "object",
+          "properties": {
+            "content": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "content": "Nice Try Buddy  gggfgfffff"
+          }
+        },
+        "FollowUserRequest": {
+          "title": "FollowUserRequest",
+          "required": [
+            "user_id"
+          ],
+          "type": "object",
+          "properties": {
+            "user_id": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "example": {
+            "user_id": 1
+          }
+        },
+        "UnfollowUserRequest": {
+          "title": "UnfollowUserRequest",
+          "required": [
+            "user_id"
+          ],
+          "type": "object",
+          "properties": {
+            "user_id": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "example": {
+            "user_id": 1
+          }
+        },
+        "SearchbyUsernameRequest": {
+          "title": "SearchbyUsernameRequest",
+          "required": [
+            "token"
+          ],
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "token": "just"
+          }
+        }
+      }
+    },
+    "tags": [
+      {
+        "name": "Tweet Live",
+        "description": ""
+      }
+    ]
+  }
+  
