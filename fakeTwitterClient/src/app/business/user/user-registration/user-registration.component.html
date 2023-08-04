@@ -1,0 +1,57 @@
+<article class="create-profile"> 
+   <!-- *ngIf="userInfo$ | async as UserInfo" -->
+    <div class="create-profile__header">
+      <!-- <fa-icon [icon]="faTwitter" size="lg"></fa-icon> -->
+      <h1>You're logged in.</h1>
+      <h4>Great! one more step to go.</h4>
+      <p>Create your profile and start tweeting</p>
+    </div>
+    <form class="create-profile__form" [formGroup]="regForm">
+      <div class="form-group">
+        <img />
+      </div>
+      <div class="form-group">
+        <label class="form-group__label" for="name">Display Name</label>
+        <input
+          autocomplete="off"
+          formControlName="username"
+          class="form-group__input"
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Name"
+          [value]=""
+        />
+      </div>
+      <div class="form-group">
+        <label class="form-group__label" for="username">password</label>
+        <input
+          formControlName="password"
+          autocomplete="off"
+          class="form__input form__input--password"
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label class="form-group__label" for="bio">email</label>
+        <input
+          formControlName="email"
+          autocomplete="off"
+          class="form__input form__input--username"
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+        />
+      </div>
+    </form>
+    <div class="create-profile__actions">
+      <button class="btn btn--primary" (click)="handleCreateProfile()">
+        Create Profile
+      </button>
+    </div>
+  </article>
+  
