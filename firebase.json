@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "docs/",
+    "public": "fakeTwitterClient/dist/fake-twitter-client",
     "ignore": [
       "firebase.json",
       "**/.*",
