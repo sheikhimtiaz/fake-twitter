@@ -1,0 +1,21 @@
+@mixin coming-soon($theme) {
+
+    $foreground: map-get($theme, foreground);
+
+    coming-soon {
+
+        #coming-soon {
+
+            .content {
+
+                .message {
+                    color: map-get($foreground, secondary-text);
+                }
+
+                .sub-message {
+                    color: map-get($foreground, secondary-text);
+                }
+            }
+        }
+    }
+}
