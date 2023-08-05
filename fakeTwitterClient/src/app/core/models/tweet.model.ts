@@ -15,3 +15,17 @@ export interface Tweet {
     isCommented: boolean;
     isEdited: boolean;
   }
+
+  export interface TweetContent {
+    content: string;
+    id: number;
+    published: string;
+    user: User;
+  }
+
+  export interface User {
+    active: boolean;
+    email: string;
+    id: number;
+    username: string;
+  }

@@ -3,19 +3,19 @@
       <section class="dashboard__section left">
         <div class="section-items">
           <twitter-profile-card [userProfile]="User"></twitter-profile-card>
-          <twitter-follow-suggestion></twitter-follow-suggestion>
+          <!-- <twitter-follow-suggestion></twitter-follow-suggestion> -->
         </div>
       </section>
       <section class="dashboard__section center">
         <twitter-feed-post-card [profile]="User"></twitter-feed-post-card>
         <twitter-feed
-          *ngIf="tweetPost$ | async as Tweet"
-          [feedTweets]="Tweet.tweets"
+          *ngIf="Tweet"
+          [feedTweets]="Tweet"
         ></twitter-feed>
       </section>
       <section class="dashboard__section right">
         <div>
-          <twitter-trending-card></twitter-trending-card>
+          <!-- <twitter-trending-card></twitter-trending-card> -->
         </div>
       </section>
     </article>
