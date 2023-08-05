@@ -4,6 +4,7 @@ import { HomeComponent } from "./home/home.component";
 import { HomeRoutingModule } from "./home-routing.module";
 import { RouterModule } from "@angular/router";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { SharedModule } from "src/app/core/shared/shared.module";
 
 @NgModule({
     declarations: [
@@ -14,6 +15,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
         HomeRoutingModule,
         RouterModule,
         FontAwesomeModule,
+        SharedModule,
     ],
     exports: []
 })
