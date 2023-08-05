@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthModule } from './core/auth';
+import { AuthGuard, AuthModule } from './core/auth';
 import { ErrorsModule } from './core/errors';
 import { HomeModule } from './business/home/home.module';
 import { UserModule } from './business/user/user.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,16 @@ import { HttpClientModule } from '@angular/common/http';
     UserModule,
     HomeModule,
     HttpClientModule,
+    FontAwesomeModule,
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor,
+        multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

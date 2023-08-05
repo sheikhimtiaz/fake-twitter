@@ -50,6 +50,7 @@
           }
         }
       }
+
     }
   
     &__actions {
@@ -79,4 +80,43 @@
       }
     }
   }
+  
+
+  .already {
+    margin: var(--spacing-base) 0;
+    color: var(--color-background);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-base);
+    align-items: center;
+    width: var(--form-width);
+    &__label {
+      font-size: var(--font-size-h4);
+      font-weight: var(--font-weight-bold);
+    }
+    &__link {
+      width: 100px;
+      color: var(--feature-color);
+      text-decoration: none;
+      border-radius: var(--border-radius-xl);
+      border: var(--border-width-lg) solid var(--feature-color);
+      background-color: var(--color-text);
+      transition: all 0.3s ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      padding: var(--spacing-base) var(--spacing-xl);
+      &:hover {
+        background-color: var(--feature-color);
+        color: var(--color-text);
+      }
+      &:active {
+        background-color: var(--feature-color);
+        opacity: 0.6;
+        color: var(--color-text);
+      }
+    }
+  }
+
   

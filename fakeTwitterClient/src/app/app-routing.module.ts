@@ -4,9 +4,9 @@ import { AuthGuard } from './core/auth/guard/auth.guard';
 
 const routes: Routes = [
   {
-      path: '',
+      path: 'home',
       loadChildren: () => import('./business/home/home.module').then(module => module.HomeModule),
-      canActivate: []
+      canActivate: [AuthGuard]
   },
   {
       path: 'user',
@@ -16,7 +16,8 @@ const routes: Routes = [
   {
       path: 'errors',
       loadChildren: () => import('./core/errors/errors.module').then(module => module.ErrorsModule),
-  }
+  },
+  {   path: '', redirectTo: 'home', pathMatch: 'full'   },
 ];
 
 @NgModule({

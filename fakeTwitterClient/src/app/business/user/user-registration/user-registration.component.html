@@ -1,7 +1,7 @@
 <article class="create-profile"> 
    <!-- *ngIf="userInfo$ | async as UserInfo" -->
     <div class="create-profile__header">
-      <!-- <fa-icon [icon]="faTwitter" size="lg"></fa-icon> -->
+      <fa-icon [icon]="faTwitter" size="lg"></fa-icon>
       <h1>You're logged in.</h1>
       <h4>Great! one more step to go.</h4>
       <p>Create your profile and start tweeting</p>
@@ -24,26 +24,26 @@
         />
       </div>
       <div class="form-group">
-        <label class="form-group__label" for="username">password</label>
+        <label class="form-group__label" for="email">Email</label>
         <input
-          formControlName="password"
+          formControlName="email"
           autocomplete="off"
-          class="form__input form__input--password"
-          type="password"
-          name="password"
-          placeholder="Password"
+          class="form-group__input"
+          type="email"
+          name="email"
+          placeholder="Email"
           required
         />
       </div>
       <div class="form-group">
-        <label class="form-group__label" for="bio">email</label>
+        <label class="form-group__label" for="password">Password</label>
         <input
-          formControlName="email"
+          formControlName="password"
           autocomplete="off"
-          class="form__input form__input--username"
-          type="email"
-          name="email"
-          placeholder="Email"
+          class="form-group__input form__input--password"
+          type="password"
+          name="password"
+          placeholder="Password"
           required
         />
       </div>
@@ -52,6 +52,10 @@
       <button class="btn btn--primary" (click)="handleCreateProfile()">
         Create Profile
       </button>
+    </div>
+    <div class="already">
+      <span class="already__label">Already have an account?</span>
+      <a class="already__link" routerLink="/login">Login</a>
     </div>
   </article>
   

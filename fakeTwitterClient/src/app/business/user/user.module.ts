@@ -5,6 +5,7 @@ import { UserLoginComponent } from "./user-login/user-login.component";
 import { UserRoutingModule } from "./user-routing.module";
 import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
         UserRoutingModule,
         RouterModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        FontAwesomeModule,
     ],
     exports: [
         UserLoginComponent,

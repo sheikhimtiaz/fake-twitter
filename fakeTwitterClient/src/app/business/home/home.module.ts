@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { HomeComponent } from "./home/home.component";
 import { HomeRoutingModule } from "./home-routing.module";
 import { RouterModule } from "@angular/router";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @NgModule({
     declarations: [
@@ -11,7 +12,8 @@ import { RouterModule } from "@angular/router";
     imports: [
         CommonModule,
         HomeRoutingModule,
-        RouterModule
+        RouterModule,
+        FontAwesomeModule,
     ],
     exports: []
 })

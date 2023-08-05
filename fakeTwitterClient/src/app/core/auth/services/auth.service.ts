@@ -1,12 +1,51 @@
 import { Injectable } from "@angular/core";
-import { Observable, ReplaySubject } from "rxjs";
+import { Router } from "@angular/router";
+import { BehaviorSubject, Observable, ReplaySubject, distinctUntilChanged } from "rxjs";
+import { LoginRequest, TweetLiveService } from "src/app/@api/fakeTwitter";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class AuthService {
-    private _isAuthenticatedReplay: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
-    /**
-     * Use only on guards
-     * @returns if the user is authenticated as an Observable<boolean>
-     */
-    public isAuthenticated$: Observable<boolean> = this._isAuthenticatedReplay.asObservable();
+    private isLoggedIn = false;
+    private isLoggedSubject = new BehaviorSubject<boolean | null>(null);;
+    private tokenSubject = new BehaviorSubject<string | null>(null);
+  
+    constructor(
+        private _router: Router,
+        private _tweetLiveService: TweetLiveService,
+    ) { }
+
+    public token$ = this.tokenSubject.asObservable();
+    public auth$ = this.isLoggedSubject.asObservable();
+  
+    public isAuthenticated(): boolean {
+      return this.isLoggedIn;
+    }
+  
+    public setLoggedInStatus(status: boolean, token: string | null): void {
+      this.isLoggedIn = status;
+      this.isLoggedSubject.next(status);
+      this.tokenSubject.next(token); 
+    }
+
+    public login(value: LoginRequest) {
+        this._tweetLiveService.login(value).subscribe(res => {
+            const response = JSON.parse(res);
+            console.log(response);
+            console.log(response.token);
+            if(response.token) {
+                localStorage.setItem("ftToken",response.token);
+                this.setLoggedInStatus(true, response.token);
+                this._router.navigateByUrl("/home");
+            }
+        })
+    }
+
+    public logout() {
+        localStorage.setItem("ftToken","");
+        this.setLoggedInStatus(false, "");
+        this._router.navigateByUrl("/user/login");
+    }
+  
 }

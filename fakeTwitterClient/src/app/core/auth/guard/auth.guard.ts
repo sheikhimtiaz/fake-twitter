@@ -15,17 +15,23 @@ export class AuthGuard {
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-        
-        return this._authService.isAuthenticated$
-            .pipe(
-                distinctUntilChanged(),
-                map((isAuthorized: boolean) => {
-                    if (!isAuthorized) {
-                        this._router.navigateByUrl('');
-                        return false;
-                    }
-                    return true;
-                })
-            );
+        console.log("Guard!");
+
+        const localToken = localStorage.getItem("ftToken");
+        this._authService.setLoggedInStatus(true, localToken);
+        return this._authService.auth$.pipe(
+            map((token) => {
+
+              const isLoggedIn = !!token;
+                console.log(token);
+                
+              if (isLoggedIn) {
+                return true;
+              } else {
+                this._router.navigateByUrl('user/login');
+                return false;
+              }
+            })
+          );
     }
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { faGoogle, faTwitter, IconDefinition } from "@fortawesome/free-brands-svg-icons";
 import { TweetLiveService } from "src/app/@api/fakeTwitter";
+import { AuthService } from "src/app/core/auth";
 
 @Component({
     selector: 'user-login',
@@ -9,10 +12,14 @@ import { TweetLiveService } from "src/app/@api/fakeTwitter";
 })
 export class UserLoginComponent implements OnInit {
 
+    faTwitter: IconDefinition = faTwitter;
+    faGoogle: IconDefinition = faGoogle;
     loginForm!: FormGroup;
 
     constructor(private _formBuilder: FormBuilder,
-        private _tweetLiveService: TweetLiveService,) { }
+        private _tweetLiveService: TweetLiveService,
+        private _authService: AuthService,
+        private _router: Router,) { }
     
     ngOnInit(): void {
       this.loginForm = this._formBuilder.group({
@@ -22,9 +29,7 @@ export class UserLoginComponent implements OnInit {
     }
   
     handleLoginForm() {
-        this._tweetLiveService.login(this.loginForm.value).subscribe(res => {
-            console.log(res);
-        })
+        this._authService.login(this.loginForm.value);
     }
 
     loginWithGoogle() {}
