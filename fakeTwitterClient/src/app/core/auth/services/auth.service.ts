@@ -35,8 +35,6 @@ export class AuthService {
     public login(value: LoginRequest) {
         this._tweetLiveService.login(value).subscribe(res => {
             const response = JSON.parse(res);
-            console.log(response);
-            console.log(response.token);
             if(response.token) {
                 this._tokenService.saveToken(response.token);
                 this.setLoggedInStatus(true, response.token);
@@ -47,7 +45,7 @@ export class AuthService {
 
     public logout() {
         this._tokenService.signOut();
-        this.setLoggedInStatus(false, "");
+        this.setLoggedInStatus(false, null);
         this._router.navigateByUrl("/user/login");
     }
   

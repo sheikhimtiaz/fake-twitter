@@ -21,16 +21,14 @@ export class AuthGuard {
 
         const localToken = this.tokenService.getToken();
         this._authService.setLoggedInStatus(true, localToken);
-        return this._authService.auth$.pipe(
+        return this._authService.token$.pipe(
+          distinctUntilChanged(),
             map((token) => {
-
-              const isLoggedIn = !!token;
-                console.log(token);
-                
-              if (isLoggedIn) {
+              console.log("route -> "+route);
+              if (token) {
                 return true;
               } else {
-                this._router.navigateByUrl('user/login');
+                this._router.navigateByUrl('/user/login');
                 return false;
               }
             })

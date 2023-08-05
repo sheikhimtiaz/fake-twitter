@@ -1,5 +1,4 @@
 import { RouterModule, Routes } from "@angular/router";
-import { AuthGuard } from "../auth";
 import { NgModule } from "@angular/core";
 import { Error401Component } from "./401/error-401.component";
 import { Error500Component } from "./500/error-500.component";
@@ -18,12 +17,10 @@ const routes: Routes = [
     {
         path: 'error-500',
         component: Error500Component,
-        canActivate: [AuthGuard]
     },
     {
         path: 'coming-soon-billing',
         component: ComingSoonComponent,
-        canActivate: [AuthGuard]
     }
 ];
 
