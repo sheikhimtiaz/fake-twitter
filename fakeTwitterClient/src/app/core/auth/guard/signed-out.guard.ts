@@ -8,7 +8,7 @@ import { TokenStorageService } from '../services/token-storage.service';
 @Injectable({
     providedIn: 'root'
 })
-export class AuthGuard {
+export class SignedOutGuard {
 
     constructor(
         private _router: Router,
@@ -17,7 +17,7 @@ export class AuthGuard {
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-        console.log("Guard!");
+        console.log("Signed out Guard!");
 
         const localToken = this.tokenService.getToken();
         this._authService.setLoggedInStatus(true, localToken);
@@ -25,10 +25,10 @@ export class AuthGuard {
           distinctUntilChanged(),
             map((token) => {
               if (token) {
-                return true;
-              } else {
-                this._router.navigateByUrl('/user/login');
+                this._router.navigateByUrl('/home');
                 return false;
+              } else {
+                return true;
               }
             })
           );

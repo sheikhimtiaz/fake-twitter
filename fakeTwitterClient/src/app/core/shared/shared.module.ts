@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { FeedComponent } from './feed/feed.component';
 import { LoaderScreenComponent } from './loader-screen/loader-screen.component';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
+import { RouterModule } from '@angular/router';
 
 
 const widgetComponents = [
@@ -27,6 +28,7 @@ const widgetComponents = [
     CommonModule,
     FontAwesomeModule,
     FormsModule,
+    RouterModule,
   ],
   exports: [...widgetComponents]
 })
