@@ -5,6 +5,7 @@ import { UserProfile } from 'src/app/core/models/user-profile.model';
 import { MakeaTweetLiveRequest, TweetLiveService } from 'src/app/@api/fakeTwitter';
 import { Tweet } from 'src/app/core/models/tweet.model';
 import { TokenStorageService } from 'src/app/core/auth/services/token-storage.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 declare const microlink: any;
 @Component({
@@ -27,7 +28,7 @@ export class FeedPostCardComponent implements OnInit, AfterViewChecked {
   faEmoji: IconDefinition = faLaughSquint;
   faGif: IconDefinition = faPhotoVideo;
   faSchedule: IconDefinition = faCalendarAlt;
-  faClose: IconDefinition = faTimesCircle
+  faClose: IconDefinition = faTimesCircle;
 
   constructor(private _tweetService: TweetLiveService,
               private _tokenService: TokenStorageService,) { }
@@ -36,7 +37,7 @@ export class FeedPostCardComponent implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked(): void {
-    microlink('.link-preview');
+    // microlink('.link-preview');
   }
 
   textInputHandler($event: any) {
@@ -79,9 +80,11 @@ export class FeedPostCardComponent implements OnInit, AfterViewChecked {
     }
     const token: string = this._tokenService.getToken() || "";
     const req: MakeaTweetLiveRequest = {
-      content: tweet.tweet || ""
+      content: this.textArea
     }
-    this._tweetService.makeaTweetLive(token, req);
+    this._tweetService.makeaTweetLive(token, req).subscribe(res => {
+      console.log(res);
+    });
     this.textInput.nativeElement.innerHTML = "";
     this.textArea = "";
     this.url_matches = []
