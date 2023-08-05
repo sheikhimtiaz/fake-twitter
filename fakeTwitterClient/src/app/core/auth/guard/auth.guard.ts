@@ -3,6 +3,7 @@ import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/ro
 import { Observable } from 'rxjs';
 import { map, distinctUntilChanged } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @Injectable({
     providedIn: 'root'
@@ -11,13 +12,14 @@ export class AuthGuard {
 
     constructor(
         private _router: Router,
-        private _authService: AuthService
+        private _authService: AuthService,
+        private tokenService: TokenStorageService,
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
         console.log("Guard!");
 
-        const localToken = localStorage.getItem("ftToken");
+        const localToken = this.tokenService.getToken();
         this._authService.setLoggedInStatus(true, localToken);
         return this._authService.auth$.pipe(
             map((token) => {

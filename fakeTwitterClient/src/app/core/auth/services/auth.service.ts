@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, Observable, ReplaySubject, distinctUntilChanged } from "rxjs";
 import { LoginRequest, TweetLiveService } from "src/app/@api/fakeTwitter";
+import { TokenStorageService } from "./token-storage.service";
 
 @Injectable({
     providedIn: 'root',
@@ -14,7 +15,9 @@ export class AuthService {
     constructor(
         private _router: Router,
         private _tweetLiveService: TweetLiveService,
-    ) { }
+        private _tokenService: TokenStorageService,
+    ) { 
+    }
 
     public token$ = this.tokenSubject.asObservable();
     public auth$ = this.isLoggedSubject.asObservable();
@@ -35,7 +38,7 @@ export class AuthService {
             console.log(response);
             console.log(response.token);
             if(response.token) {
-                localStorage.setItem("ftToken",response.token);
+                this._tokenService.saveToken(response.token);
                 this.setLoggedInStatus(true, response.token);
                 this._router.navigateByUrl("/home");
             }
@@ -43,9 +46,10 @@ export class AuthService {
     }
 
     public logout() {
-        localStorage.setItem("ftToken","");
+        this._tokenService.signOut();
         this.setLoggedInStatus(false, "");
         this._router.navigateByUrl("/user/login");
     }
   
+
 }
