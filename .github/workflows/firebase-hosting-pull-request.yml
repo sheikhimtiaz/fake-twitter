@@ -10,14 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       # - run: npm ci && npm run build
-      - name: Use Node.js 12.8
+      - name: Use Node.js 18.17
         uses: actions/setup-node@v1
         with:
           node-version: 18.17
       - name: Install dependencies
         run: cd fakeTwitterClient && npm install
       - name: Build
-        run: npm run build -- --prod
+        run: cd fakeTwitterClient &&  npm run build --
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
