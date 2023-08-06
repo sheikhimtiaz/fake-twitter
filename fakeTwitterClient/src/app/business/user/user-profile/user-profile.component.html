@@ -1,1 +1,27 @@
-<p>profile!</p>
+<ng-container *ngIf="userProfile">
+    <article class="dashboard" *ngIf="userProfile.dataStatus === 'success'">
+      <section class="dashboard__section left">
+        <div class="section-items">
+          <twitter-profile-card [userProfile]="userProfile"></twitter-profile-card>
+          <!-- <twitter-follow-suggestion></twitter-follow-suggestion> -->
+        </div>
+      </section>
+      <section class="dashboard__section center">
+        <h1 class="myTweets">My Tweets</h1>
+        <twitter-feed
+          *ngIf="Tweet"
+          [feedTweets]="Tweet"
+        ></twitter-feed>
+      </section>
+      <section class="dashboard__section right">
+        <div>
+          <!-- <twitter-trending-card></twitter-trending-card> -->
+        </div>
+      </section>
+    </article>
+    <ng-container *ngIf="userProfile.dataStatus === 'loading'">
+      <twitter-loader-screen></twitter-loader-screen>
+    </ng-container>
+  </ng-container>
+
+  

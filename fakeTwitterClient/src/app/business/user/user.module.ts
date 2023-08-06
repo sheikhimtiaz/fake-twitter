@@ -6,11 +6,14 @@ import { UserRoutingModule } from "./user-routing.module";
 import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { SharedModule } from "src/app/core/shared/shared.module";
+import { UserProfileComponent } from "./user-profile/user-profile.component";
 
 @NgModule({
     declarations: [
         UserLoginComponent,
-        UserRegistrationComponent
+        UserRegistrationComponent,
+        UserProfileComponent,
     ],
     imports: [
         CommonModule,
@@ -19,10 +22,12 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
         FormsModule,
         ReactiveFormsModule,
         FontAwesomeModule,
+        SharedModule,
     ],
     exports: [
         UserLoginComponent,
-        UserRegistrationComponent
+        UserRegistrationComponent,
+        UserProfileComponent,
     ]
 })
 export class UserModule { }

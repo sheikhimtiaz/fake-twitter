@@ -16,37 +16,20 @@ export class HomeComponent implements OnInit {
     userProfile$ = this._tweetLiveService.getUsers(config.CONTENT_TYPE, this._tokenService.getToken() || "");
     tweetPost$ = this._tweetLiveService.getTweetsbyUserID(config.CONTENT_TYPE, this._tokenService.getToken() || "");
 
-    User: UserProfile = {
+    userProfile: UserProfile = {
         uid: "",
         displayName: "Imtiaz Ahmed",
         email: "imticorei54@gmail.com",
         userId: "sheikhimtiaz",
         photoUrl: "",
-        bio: "Software Engineer",
-        followers: 72,
-        following: 114,
+        bio: "n/a",
+        followers: 0,
+        following: 0,
         createdAt: new Date(),
         updatedAt: new Date(),
         dataStatus: 'success',
     };
     Tweet: Tweet[] = [];
-    Tweet2: Tweet = {
-        tweet: "agagag agagag agag",
-        createdAt: undefined,
-        createdBy: "",
-        createdByName: "agagag",
-        createdByPhoto: "",
-        createdByUsername: "",
-        likes: 572,
-        comments: 4,
-        shares: 174,
-        retweets: 5,
-        isLiked: true,
-        isRetweeted: true,
-        isShared: true,
-        isCommented: true,
-        isEdited: false
-    };
     constructor(private _tweetLiveService: TweetLiveService,
                 private _tokenService: TokenStorageService,) {
     }
@@ -54,6 +37,32 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
         const token: string = this._tokenService.getToken() || "";
+        this.getUserDetails(token);
+        this.getTweets(token);
+    }
+
+    private getUserDetails(token: string) {
+        this._tweetLiveService.getUsers(config.CONTENT_TYPE, token).subscribe(response => {
+            const resp = JSON.parse(response);
+            console.log(resp);
+            
+        });
+        
+        this._tweetLiveService.getFollowersbyUserID(config.CONTENT_TYPE, token).subscribe(response => {
+            const resp = JSON.parse(response);
+            console.log(resp);
+            this.userProfile.followers = resp.count;
+        });
+        
+        this._tweetLiveService.getFollowingsbyUserID(config.CONTENT_TYPE, token).subscribe(response => {
+            const resp = JSON.parse(response);
+            console.log(resp);
+            this.userProfile.following = resp.count;
+        });
+        
+    }
+
+    private getTweets(token: string) {
         this._tweetLiveService.myTimeline(config.CONTENT_TYPE, token, "1").subscribe(res => {
             console.log(res);
             const response = JSON.parse(res);
@@ -68,10 +77,10 @@ export class HomeComponent implements OnInit {
                         createdByName: item.user.username,
                         createdByPhoto: "",
                         createdByUsername: item.user.username,
-                        likes: 572,
-                        comments: 4,
-                        shares: 174,
-                        retweets: 5,
+                        likes: 0,
+                        comments: 0,
+                        shares: 0,
+                        retweets: 0,
                         isLiked: true,
                         isRetweeted: true,
                         isShared: true,
@@ -81,8 +90,8 @@ export class HomeComponent implements OnInit {
                 });
             }
         });
-        
     }
 
 }
+
 
