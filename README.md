@@ -25,4 +25,4 @@ Run the following to start the project.
 
 ## Build
 
-Run `cd fakeTwitterClient && npm run build` to build the project. The build artifacts will be stored in the `dist/twitter-clone` directory.
+Run `cd fakeTwitterClient && npm run build` to build the project. The build artifacts will be stored in the `dist/fake-twitter-client` directory.
