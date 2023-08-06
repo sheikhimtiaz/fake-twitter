@@ -18,8 +18,11 @@ A Twitter clone build using Angular 16. It uses NgRx for state management and re
 
 ## Run
 
-Run `npm install && npm run start` to build the project.
+Run the following to start the project.
+`cd fakeTwitterClient`
+`npm install`
+`npm run start` 
 
 ## Build
 
-Run `npm run build` to build the project. The build artifacts will be stored in the `dist/twitter-clone` directory.
+Run `cd fakeTwitterClient && npm run build` to build the project. The build artifacts will be stored in the `dist/twitter-clone` directory.
